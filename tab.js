@@ -34,8 +34,20 @@ jQuery(document).ready(function(){
 			'action' : "pptwj_tabwidget_list"
 		};
 
+		/**
+		 * Display ajax loader/spinner
+		 */
+		var box_height = jQuery('.pptwj-tabs-wrap .boxes').outerHeight();
+		var spinner = jQuery('.pptwj-loader img');
+		var spinner_div = jQuery('.pptwj-loader');
+
+		spinner.css('margin-top', box_height/2);
+		spinner_div.css('height', box_height);
+		spinner_div.show();
+
 		var $tabWidgetHandler = function( $data ){
 			//console.log( $data );
+			spinner_div.hide();
 			if( $data == "" ) return;
 			
 			var $list = $this.parent().parent().siblings('.list');

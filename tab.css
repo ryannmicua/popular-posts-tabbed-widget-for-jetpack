@@ -6,7 +6,7 @@
 			.pptwj-tabs-wrap .tab-links li a{ background: none; color: #999; display: block; float: left; font-weight: bold; padding: 9px 8px 4px; text-decoration: none; text-transform: uppercase;}
 			.pptwj-tabs-wrap .tab-links li a.selected, .pptwj-tabs-wrap .tab-links li a:hover{ background: #395A98; border-radius: 5px 5px 0 0; color: #fff; }
 			
-.pptwj-tabs-wrap .boxes{ border: 1px solid #e5e5e5; border-radius: 0 0 3px 3px; }
+.pptwj-tabs-wrap .boxes{ border: 1px solid #e5e5e5; border-radius: 0 0 3px 3px; position: relative; }
 	.pptwj-tabs-wrap .boxes ul{}
 		.pptwj-tabs-wrap .boxes ul li{ border-bottom: 1px solid #e5e5e5; font-size: 13px; overflow: hidden; margin: 0; padding: 5px 8px; }
 		.pptwj-tabs-wrap .boxes ul li.even{ background: #fcfcfc; border-left: none; border-right: none; border-top: none; }
@@ -21,3 +21,6 @@
 	/*.pptwj-tabs-wrap .tab-filter-list{ display: inline-block; border: 0 !important; }*/
 	.pptwj-tabs-wrap .boxes ul.tab-filter-list a{ color: #A9B8D7; font-weight: bold; margin: 0 10px; text-transform: uppercase; }
 	.pptwj-tabs-wrap .boxes ul.tab-filter-list a.selected{ color: #fff; }
+
+.pptwj-loader{ background: #fff; left: 0; opacity: 0.4; position: absolute; text-align: center; top: 0; width: 100%; }
+	.pptwj-loader img{}

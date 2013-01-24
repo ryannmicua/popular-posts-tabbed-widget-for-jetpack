@@ -282,11 +282,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						</ul>
 					</div><!-- #tab-comm -->
 					<?php } ?>
-	
+					<div class="pptwj-loader"><img src="<?php echo includes_url(); ?>/images/wpspin-2x.gif" alt="Ajax spinner"></div>
 				</div><!-- /.boxes -->
-	
-			</div><!-- /wooTabs -->
-	
+			</div><!-- /pptwj-tabs-wrap -->
+
 			<?php echo $after_widget; ?>
 			<?php
 	}
@@ -411,7 +410,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$popular = self::get_posts_by_wp_com( $args );
 
 		ob_start();
-		
+
 		if( !$popular ):
 			?>
 			<li><?php _e('Sorry. No data yet.', PPTWJ_DOMAIN ); ?></li>
@@ -488,7 +487,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 
 		$top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => $limit ) );
 
-		if( !$posts ){
+		if( !$top_posts ){
 			return array();
 		}
 
@@ -511,7 +510,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			if ( !$post )
 				continue;
 
-			$permalink = get_permalink( $post->id );
+			$permalink = get_permalink( $post->ID );
 			$postdate = date_i18n( $args['date_format'], strtotime( $post->post_date ) );
 			$views = number_format_i18n( $top_post['views'] );
 
@@ -527,7 +526,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				'title' => $title,
 				'permalink' => $permalink,
 				'views' => $views,
-				'id' => $post->id,
+				'id' => $post->ID,
 				'postdate' => $postdate
 			);
 			
