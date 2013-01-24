@@ -480,7 +480,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		switch( $args['range'] ){
 			case 'weekly':  $days = 7; break;
 			case 'monthly': $days = 30; break;
-			case 'daily' :  $days = 2; break;
+			case 'daily' :  $days = 1; break;
 			case 'all':
 			default:        $days = -1; break;
 		}
