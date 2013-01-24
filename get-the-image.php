@@ -224,7 +224,7 @@ function pptwj_get_the_image_by_meta_key( $args = array() ) {
 /**
  * Checks for images using a custom version of the WordPress 2.9+ get_the_post_thumbnail() function.  
  * If an image is found, return it and the $post_thumbnail_id.  The WordPress function's other filters are 
- * later added in the display_the_image() function.
+ * later added in the pptwj_display_the_image() function.
  *
  * @since 0.7.0
  * @param array $args Arguments for how to load and display the image.
@@ -443,7 +443,7 @@ function pptwj_get_the_image_link( $deprecated = '', $deprecated_2 = '', $deprec
  * @since 0.3.0
  * @deprecated 0.7.0
  */
-function image_by_custom_field( $args = array() ) {
+function pptwj_image_by_custom_field( $args = array() ) {
 	return pptwj_get_the_image_by_meta_key( $args );
 }
 
@@ -451,7 +451,7 @@ function image_by_custom_field( $args = array() ) {
  * @since 0.4.0
  * @deprecated 0.7.0
  */
-function image_by_the_post_thumbnail( $args = array() ) {
+function pptwj_image_by_the_post_thumbnail( $args = array() ) {
 	return pptwj_get_the_image_by_post_thumbnail( $args );
 }
 
@@ -459,7 +459,7 @@ function image_by_the_post_thumbnail( $args = array() ) {
  * @since 0.3.0
  * @deprecated 0.7.0
  */
-function image_by_attachment( $args = array() ) {
+function pptwj_image_by_attachment( $args = array() ) {
 	return pptwj_get_the_image_by_attachment( $args );
 }
 
@@ -467,7 +467,7 @@ function image_by_attachment( $args = array() ) {
  * @since 0.3.0
  * @deprecated 0.7.0
  */
-function image_by_scan( $args = array() ) {
+function pptwj_image_by_scan( $args = array() ) {
 	return pptwj_get_the_image_by_scan( $args );
 }
 
@@ -475,7 +475,7 @@ function image_by_scan( $args = array() ) {
  * @since 0.3.0
  * @deprecated 0.7.0
  */
-function image_by_default( $args = array() ) {
+function pptwj_image_by_default( $args = array() ) {
 	return pptwj_get_the_image_by_default( $args );
 }
 
@@ -483,7 +483,7 @@ function image_by_default( $args = array() ) {
  * @since 0.1.0
  * @deprecated 0.7.0
  */
-function display_the_image( $args = array(), $image = false ) {
+function pptwj_display_the_image( $args = array(), $image = false ) {
 	return pptwj_get_the_image_format( $args, $image );
 }
 
