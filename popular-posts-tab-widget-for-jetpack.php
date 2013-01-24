@@ -485,7 +485,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			default:        $days = -1; break;
 		}
 
-		$top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => $limit ) );
+		/** we only limit to 50 posts. but change this if you want **/
+		$top_posts = stats_get_csv( 'postviews', array( 'days' => $days, 'limit' => 50 ) );
 
 		if( !$top_posts ){
 			return array();
@@ -510,6 +511,9 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			if ( !$post )
 				continue;
 
+			if( $args['post_type'] != $post->post_type )
+				continue;
+
 			$permalink = get_permalink( $post->ID );
 			$postdate = date_i18n( $args['date_format'], strtotime( $post->post_date ) );
 			$views = number_format_i18n( $top_post['views'] );
@@ -531,7 +535,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			);
 			
 			$posts[] = $data;
-			$count++;
+			$counter++;
+
+			if( $counter == $limit )
+				break;
 
 		}
 
