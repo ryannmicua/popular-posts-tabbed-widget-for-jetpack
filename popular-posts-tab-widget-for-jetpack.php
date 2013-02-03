@@ -2,10 +2,10 @@
 /*
  * Plugin Name: Popular Posts Tabbed Widget for Jetpack
  * Plugin URI: 
- * Description: 
- * Author: Pogidude
+ * Description: Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.
+ * Author: Ryann Micua
+ * Author URI: http://pogidude.com/about
  * Version: 1.0
- * Author URI: http://pogidude.com
  * License: GPL2+
  * Text Domain: pptwj
  * Domain Path: /languages/
@@ -20,13 +20,6 @@ define( "PPTWJ_URL", plugin_dir_url( __FILE__ ) );
 define( 'PPTWJ_BASENAME', plugin_basename( __FILE__ ) );
 define( 'PPTWJ_ASSETS_URL', trailingslashit( PPTWJ_URL ) . 'assets/' );
 define( 'PPTWJ_DOMAIN', 'pptwj' );
-
-/*
- * Currently, this widget depends on the Stats Module. To not load this file
- * when the Stats Module is not active would potentially bypass Jetpack's
- * fatal error detection on module activation, so we always load this file.
- * Instead, we don't register the widget if the Stats Module isn't active.
- */
 
 /**
  * Register the widget for use in Appearance -> Widgets

@@ -10,6 +10,7 @@
 .pptwj-tabs-wrap .boxes{ border: 1px solid #e5e5e5; border-radius: 0 0 3px 3px; position: relative; }
 	.pptwj-tabs-wrap .boxes ul{ padding: 2px 0 0; }
 		.pptwj-tabs-wrap .boxes ul li{ border-bottom: 1px solid #e5e5e5; font-size: 13px; overflow: hidden; margin: 0; padding: 5px 8px; }
+		.pptwj-tabs-wrap .boxes ul li.odd{ background: #fff; }
 		.pptwj-tabs-wrap .boxes ul li.even{ background: #fcfcfc; border-left: none; border-right: none; border-top: none; }
 			.pptwj-tabs-wrap .boxes ul li a{ color: #333; }
 			.pptwj-tabs-wrap .boxes ul li a:hover{}
