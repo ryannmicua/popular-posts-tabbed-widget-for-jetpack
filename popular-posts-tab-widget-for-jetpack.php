@@ -70,7 +70,6 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		} else {
 			self::$_stats_enabled = true;
 		}
-		self::$_stats_enabled = true;
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', PPTWJ_DOMAIN) );
