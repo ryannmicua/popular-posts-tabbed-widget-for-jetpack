@@ -34,21 +34,7 @@ define( 'PPTWJ_DOMAIN', 'pptwj' );
 add_action( 'widgets_init', 'pptwj_init' );
 
 function pptwj_init() {
-	if( defined('PPTWJ_DEV') ){
-		register_widget( 'Popular_Posts_Tabbed_Widget_Jetpack' );
-	} else {
-
-		// Currently, this widget depends on the Stats Module
-		if (
-			( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
-		&&
-			!function_exists( 'stats_get_csv' )
-		) {
-			return;
-		}
-
-		register_widget( 'Popular_Posts_Tabbed_Widget_Jetpack' );
-	}
+	register_widget( 'Popular_Posts_Tabbed_Widget_Jetpack' );
 }
 
 class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
@@ -56,6 +42,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 	protected $defaults;
 	protected $popular_days = 0;
 	private static $_days = 0;
+	private static $_stats_enabled = false;
 	const _tablename = 'popularpostsdata';
 	
 	function Popular_Posts_Tabbed_Widget_Jetpack () {
@@ -76,6 +63,20 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			'latest' => '', 
 			'comments' => ''
 		);
+
+		/**
+		 * Check if Jetpack is connected to WordPress.com and Stats module is enabled
+		 */
+		// Currently, this widget depends on the Stats Module
+		if (
+			( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
+		&&
+			!function_exists( 'stats_get_csv' )
+		) {
+			self::$_stats_enabled = false;
+		} else {
+			self::$_stats_enabled = true;
+		}
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', PPTWJ_DOMAIN) );
@@ -146,42 +147,50 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
 	?>
-       <p>
-	       <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts:', PPTWJ_DOMAIN ); ?>
-	       <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo isset( $instance['number'] ) ? $instance['number'] : ''; ?>" />
-	       </label>
-       </p>
-       <p>
-	       <label for="<?php echo $this->get_field_id( 'thumb_size' ); ?>"><?php _e( 'Thumbnail Size (0=disable):', PPTWJ_DOMAIN ); ?>
-	       <input class="widefat" id="<?php echo $this->get_field_id( 'thumb_size' ); ?>" name="<?php echo $this->get_field_name( 'thumb_size' ); ?>" type="text" value="<?php echo isset( $instance['thumb_size'] ) ? $instance['thumb_size'] : ''; ?>" />
-	       </label>
-       </p>
-       <?php /*
-       <p>
-	       <label for="<?php echo $this->get_field_id( 'days' ); ?>"><?php _e( 'Popular limit (days):', PPTWJ_DOMAIN ); ?>
-	       <input class="widefat" id="<?php echo $this->get_field_id( 'days' ); ?>" name="<?php echo $this->get_field_name( 'days' ); ?>" type="text" value="<?php echo isset( $instance['days'] ) ? $instance['days'] : ''; ?>" />
-	       </label>
-       </p>
-       */ ?>
-        <p>
-        	<?php $order = isset( $instance['order'] ) ? $instance['order'] : 'pop'; ?>
-            <label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'First Visible Tab:', PPTWJ_DOMAIN ); ?></label>
-            <select name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'order' ); ?>">
-                <option value="pop" <?php selected( $order, 'pop' ); ?>><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></option>
-                <option value="latest" <?php selected( $order, 'latest' ); ?>><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></option>
-                <option value="comments" <?php selected( $order, 'comments' ); ?>><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></option>
-            </select>
-        </p>
-       <p><strong><?php _e( 'Hide Tabs:', PPTWJ_DOMAIN ); ?></strong></p>
-       <p>
-        <input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $instance['pop'], 'on' ); ?>><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></input>
-	   </p>
-	   <p>
-	       <input id="<?php echo $this->get_field_id( 'latest' ); ?>" name="<?php echo $this->get_field_name( 'latest' ); ?>" type="checkbox" <?php checked( $instance['latest'], 'on' ); ?>><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></input>
-	   </p>
-	   <p>
-	       <input id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" type="checkbox" <?php checked( $instance['comments'], 'on' ); ?>><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></input>
-	   </p>
+		<p>
+		   <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts:', PPTWJ_DOMAIN ); ?>
+		   <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo isset( $instance['number'] ) ? $instance['number'] : ''; ?>" />
+		   </label>
+		</p>
+		<p>
+		   <label for="<?php echo $this->get_field_id( 'thumb_size' ); ?>"><?php _e( 'Thumbnail Size (0=disable):', PPTWJ_DOMAIN ); ?>
+		   <input class="widefat" id="<?php echo $this->get_field_id( 'thumb_size' ); ?>" name="<?php echo $this->get_field_name( 'thumb_size' ); ?>" type="text" value="<?php echo isset( $instance['thumb_size'] ) ? $instance['thumb_size'] : ''; ?>" />
+		   </label>
+		</p>
+		<?php /*
+		<p>
+		   <label for="<?php echo $this->get_field_id( 'days' ); ?>"><?php _e( 'Popular limit (days):', PPTWJ_DOMAIN ); ?>
+		   <input class="widefat" id="<?php echo $this->get_field_id( 'days' ); ?>" name="<?php echo $this->get_field_name( 'days' ); ?>" type="text" value="<?php echo isset( $instance['days'] ) ? $instance['days'] : ''; ?>" />
+		   </label>
+		</p>
+		*/ ?>
+		<p>
+			<?php $order = isset( $instance['order'] ) ? $instance['order'] : 'pop'; ?>
+		    <label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'First Visible Tab:', PPTWJ_DOMAIN ); ?></label>
+		    <select name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'order' ); ?>">
+		        <option value="pop" <?php selected( $order, 'pop' ); ?>><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></option>
+		        <option value="latest" <?php selected( $order, 'latest' ); ?>><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></option>
+		        <option value="comments" <?php selected( $order, 'comments' ); ?>><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></option>
+		    </select>
+		</p>
+		<p><strong><?php _e( 'Hide Tabs:', PPTWJ_DOMAIN ); ?></strong></p>
+		
+		<?php if( !self::$_stats_enabled ) : ?>
+			<div class="require-error"><?php _e('Popular Posts tab requires the Jetpack plugin to be activated and connected. It also requires the Stats module to be enabled.', PPTWJ_DOMAIN ); ?></div>
+			<?php $pop_val = 'on'; ?>
+		<?php else: ?>
+			<?php $pop_val = $instance['pop']; ?>
+		<?php endif; ?>
+		
+		<p>
+		<input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $pop_val, 'on' ); ?>> <?php _e( 'Popular', PPTWJ_DOMAIN ); ?></input>
+		</p>
+		<p>
+		   <input id="<?php echo $this->get_field_id( 'latest' ); ?>" name="<?php echo $this->get_field_name( 'latest' ); ?>" type="checkbox" <?php checked( $instance['latest'], 'on' ); ?>> <?php _e( 'Latest', PPTWJ_DOMAIN ); ?></input>
+		</p>
+		<p>
+		   <input id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" type="checkbox" <?php checked( $instance['comments'], 'on' ); ?>> <?php _e( 'Comments', PPTWJ_DOMAIN ); ?></input>
+		</p>
 	<?php
 	} // End form()
 
@@ -197,6 +206,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$pop = ''; if ( array_key_exists( 'pop', $instance ) ) $pop = $instance['pop'];
 		$latest = ''; if ( array_key_exists( 'latest', $instance ) ) $latest = $instance['latest'];
 		$comments = ''; if ( array_key_exists( 'comments', $instance ) ) $comments = $instance['comments'];
+
+
 
 		$data = array(
 			'time' => '',
@@ -461,7 +472,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 	 */
 	static function get_posts_by_wp_com( $args ){
 
-		if( !function_exists('stats_get_csv'))
+		if( !self::$_stats_enabled || !function_exists('stats_get_csv'))
 			return array();
 
 		$defaults = array(

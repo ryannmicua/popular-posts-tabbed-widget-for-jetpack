@@ -45,7 +45,7 @@ add_action( 'added_post_meta', array('PPTWJ_Get_The_Image', 'get_the_image_delet
  * @param array $args Arguments for how to load and display the image.
  * @return string|array The HTML for the image. | Image attributes in an array.
  */
-function get_the_image( $args = array(), $post_id = null ) {
+function pptwj_get_the_image( $args = array(), $post_id = null ) {
 	global $post;
 
 	/* Set the default arguments. */
