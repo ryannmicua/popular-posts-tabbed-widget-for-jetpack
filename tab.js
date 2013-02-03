@@ -49,6 +49,9 @@ jQuery(document).ready(function(){
 			//console.log( $data );
 			spinner_div.hide();
 			if( $data == "" ) return;
+
+			jQuery('ul.tab-filter-list a').removeClass('selected');
+			$this.addClass('selected');
 			
 			var $list = $this.parent().parent().siblings('.list');
 			$list.html( $data );

@@ -77,6 +77,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		} else {
 			self::$_stats_enabled = true;
 		}
+		self::$_stats_enabled = true;
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', PPTWJ_DOMAIN) );
@@ -125,7 +126,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$instance['comments'] = isset( $new_instance['comments'] ) ? esc_attr( $new_instance['comments'] ) : '';
 
 		if( !self::$_stats_enabled ){
-			$instance['pop'] = 'on';
+			//$instance['pop'] = 'on';
 		}
 		
 		return $instance;
@@ -180,14 +181,14 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		<p><strong><?php _e( 'Hide Tabs:', PPTWJ_DOMAIN ); ?></strong></p>
 		
 		<?php if( !self::$_stats_enabled ) : ?>
-			<div class="require-error"><?php _e('Popular Posts tab requires the Jetpack plugin to be activated and connected. It also requires the Stats module to be enabled.', PPTWJ_DOMAIN ); ?></div>
+			<div class="pptwj-require-error" style="background: #FFEBE8; border: 1px solid #c00; color: #333; margin: 1em 0; padding: 3px 5px; "><?php _e('Popular Posts tab requires the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> to be activated and connected. It also requires the Jetpack Stats module to be enabled.', PPTWJ_DOMAIN ); ?></div>
 			<?php $pop_val = 'on'; ?>
 		<?php else: ?>
 			<?php $pop_val = $instance['pop']; ?>
 		<?php endif; ?>
 		
 		<p>
-		<input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $pop_val, 'on' ); ?>> <?php _e( 'Popular', PPTWJ_DOMAIN ); ?></input>
+		<input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $instance['pop'], 'on' ); ?>> <?php _e( 'Popular', PPTWJ_DOMAIN ); ?></input>
 		</p>
 		<p>
 		   <input id="<?php echo $this->get_field_id( 'latest' ); ?>" name="<?php echo $this->get_field_name( 'latest' ); ?>" type="checkbox" <?php checked( $instance['latest'], 'on' ); ?>> <?php _e( 'Latest', PPTWJ_DOMAIN ); ?></input>
@@ -224,11 +225,11 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 	
 				<ul class="tab-links">
 					<?php if ( $order == "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></a></li>
-					<?php } elseif ( $order == "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Commented', PPTWJ_DOMAIN ); ?></a></li>
+					<?php } elseif ( $order == "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></a></li>
 					<?php } ?>
 					
 					<?php if (!$pop == "on") { ?><li class="popular"><a href="#tab-pop"><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
-					<?php if ($order <> "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Commented', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
+					<?php if ($order <> "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
 					<?php if ($order <> "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
 				</ul>
 				
@@ -425,8 +426,9 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		ob_start();
 
 		if( !$popular ):
+			$message = !self::$_stats_enabled ? __('<a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> with Stats module needs to be enabled.', PPTWJ_DOMAIN) : __('Sorry. No data yet.', PPTWJ_DOMAIN);
 			?>
-			<li><?php _e('Sorry. No data yet.', PPTWJ_DOMAIN ); ?></li>
+			<li><?php echo $message; ?></li>
 			<?php
 			$contents = ob_get_contents();
 			ob_end_clean();
