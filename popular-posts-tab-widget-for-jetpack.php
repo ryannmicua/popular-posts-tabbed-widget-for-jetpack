@@ -58,7 +58,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			'number' => 5, 
 			'thumb_size' => 45, 
 			'order' => 'pop', 
-			'days' => '', 
+			'days' => '60', 
 			'pop' => '', 
 			'latest' => '', 
 			'comments' => ''
@@ -118,11 +118,15 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		$instance['number'] = intval( $new_instance['number'] );
 		$instance['thumb_size'] = intval( $new_instance['thumb_size'] );
-		$instance['days'] = intval( $new_instance['days'] );
+		//$instance['days'] = intval( $new_instance['days'] );
 		$instance['order'] = esc_attr( $new_instance['order'] );
 		$instance['pop'] = isset( $new_instance['pop'] ) ? esc_attr( $new_instance['pop'] ) : '';
 		$instance['latest'] = isset( $new_instance['latest'] ) ? esc_attr( $new_instance['latest'] ) : '';
 		$instance['comments'] = isset( $new_instance['comments'] ) ? esc_attr( $new_instance['comments'] ) : '';
+
+		if( !self::$_stats_enabled ){
+			$instance['pop'] = 'on';
+		}
 		
 		return $instance;
 		
@@ -206,8 +210,6 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$pop = ''; if ( array_key_exists( 'pop', $instance ) ) $pop = $instance['pop'];
 		$latest = ''; if ( array_key_exists( 'latest', $instance ) ) $latest = $instance['latest'];
 		$comments = ''; if ( array_key_exists( 'comments', $instance ) ) $comments = $instance['comments'];
-
-
 
 		$data = array(
 			'time' => '',
