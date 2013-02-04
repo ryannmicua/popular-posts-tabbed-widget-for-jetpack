@@ -118,7 +118,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$instance['comments'] = isset( $new_instance['comments'] ) ? esc_attr( $new_instance['comments'] ) : '';
 
 		if( !self::$_stats_enabled ){
-			//$instance['pop'] = 'on';
+			$instance['pop'] = 'on';
 		}
 		
 		return $instance;
@@ -174,9 +174,6 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		<?php if( !self::$_stats_enabled ) : ?>
 			<div class="pptwj-require-error" style="background: #FFEBE8; border: 1px solid #c00; color: #333; margin: 1em 0; padding: 3px 5px; "><?php _e('Popular Posts tab requires the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> to be activated and connected. It also requires the Jetpack Stats module to be enabled.', PPTWJ_DOMAIN ); ?></div>
-			<?php $pop_val = 'on'; ?>
-		<?php else: ?>
-			<?php $pop_val = $instance['pop']; ?>
 		<?php endif; ?>
 		
 		<p>
@@ -489,7 +486,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			case 'monthly': $days = 30; break;
 			case 'daily' :  $days = 1; break;
 			case 'all':
-			default:        $days = -1; break;
+			default:        $days = -1; break; //get all
 		}
 
 		/** we only limit to 50 posts. but change this if you want **/
@@ -556,6 +553,9 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 	/**
 	 * Uses data gathered using WP Popular Posts plugin
 	 * @url http://wordpress.org/extend/plugins/wordpress-popular-posts
+	 *
+	 * As of v1.0: Currently used only for grabbing most commented posts within certain period.
+	 * Isn't yet used to grab data from WP Popular Posts plugin. Maybe later.
 	 * 
 	 * @param  array $args
 	 * @return array
