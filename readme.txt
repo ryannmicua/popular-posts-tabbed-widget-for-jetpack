@@ -18,7 +18,7 @@ If you enjoyed using Popular Posts Tabbed Widget for Jetpack and find it useful,
 == Installation ==
 
 1. Download the zip-archive and extract it into your computer.
-2. Upload the entire email-reminder folder to the /wp-content/plugins/ directory in your web site.
+2. Upload the entire popular-posts-tab-widget-for-jetpack folder to the /wp-content/plugins/ directory in your web site.
 3. Activate the plugin through the 'Plugins' menu in your WordPress administration page.
 
 Go to Appearance -> Widgets administration page and look for the widget named Popular Posts Tabbed Widget
