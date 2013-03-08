@@ -279,7 +279,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month') as $key => $val ): ?>
+								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -295,7 +295,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="popular">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month') as $key => $val ): ?>
+								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="popular"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -317,7 +317,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month') as $key => $val ): ?>
+								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -841,6 +841,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			case 'day':    $time = 'daily'; break;
 			case 'week' :  $time = 'weekly'; break;
 			case 'month' : $time = 'monthly'; break;
+			case 'all' :
 			default:       $time = 'all'; break;
 		}
 		

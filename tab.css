@@ -21,7 +21,7 @@
 	.pptwj-tabs-wrap .boxes ul.tab-filter-list{ border: none; margin: -1px; background: #4C5360; padding: 0; text-align: center; }
 		.pptwj-tabs-wrap .boxes ul.tab-filter-list li{ border: none; padding: 2px 8px 3px; }
 	/*.pptwj-tabs-wrap .tab-filter-list{ display: inline-block; border: 0 !important; }*/
-	.pptwj-tabs-wrap .boxes ul.tab-filter-list a{ color: #ddd; font-size: 11px; margin: 0 10px; text-decoration: none; text-transform: uppercase; }
+	.pptwj-tabs-wrap .boxes ul.tab-filter-list a{ color: #ddd; font-size: 11px; margin: 0 8px; text-decoration: none; text-transform: uppercase; }
 	.pptwj-tabs-wrap .boxes ul.tab-filter-list a.selected, .pptwj-tabs-wrap .boxes ul.tab-filter-list a:hover{ color: #fff; text-decoration: none; }
 
 .pptwj-loader{ background: #fff; left: 0; opacity: 0.4; position: absolute; text-align: center; top: 0; width: 100%; }
