@@ -46,17 +46,6 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		include_once PPTWJ_DIR . 'get-the-image.php';
 
-		/* Set up some default widget settings. */
-		$this->defaults = array(
-			'number' => 5, 
-			'thumb_size' => 45, 
-			'order' => 'pop', 
-			'days' => '60', 
-			'pop' => '', 
-			'latest' => '', 
-			'comments' => ''
-		);
-
 		/**
 		 * Check if Jetpack is connected to WordPress.com and Stats module is enabled
 		 */
@@ -70,6 +59,19 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		} else {
 			self::$_stats_enabled = true;
 		}
+
+		/* Set up some default widget settings. */
+		$this->defaults = array(
+			'number' => 5, 
+			'thumb_size' => 45, 
+			'order' => self::$_stats_enabled ? 'pop' : 'latest', 
+			'days' => '60', 
+			'pop' => self::$_stats_enabled ? 'off' : 'on',
+			'latest' => '', 
+			'comments' => '',
+			'popular_range' => 'all',
+			'comments_range' => 'daily'
+		);
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', PPTWJ_DOMAIN) );
@@ -107,6 +109,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 	
 	function update ( $new_instance, $old_instance ) {
 		
+		$defaults = $this->defaults;
+
 		$instance = $old_instance;
 		
 		$instance['number'] = intval( $new_instance['number'] );
@@ -116,9 +120,16 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$instance['pop'] = isset( $new_instance['pop'] ) ? esc_attr( $new_instance['pop'] ) : '';
 		$instance['latest'] = isset( $new_instance['latest'] ) ? esc_attr( $new_instance['latest'] ) : '';
 		$instance['comments'] = isset( $new_instance['comments'] ) ? esc_attr( $new_instance['comments'] ) : '';
+		$instance['popular_range'] = isset( $new_instance['popular_range'] ) ? $new_instance['popular_range'] : $defaults['popular_range'];
+		$instance['comments_range'] = isset( $new_instance['comments_range'] ) ? $new_instance['comments_range'] : $defaults['comments_range'];
 
 		if( !self::$_stats_enabled ){
 			$instance['pop'] = 'on';
+
+			if( $new_instance['order'] == 'pop' ){
+				//'pop' cannot be the first visible tab since it is disabled
+				$instance['order'] = $defaults['order'];
+			}
 		}
 		
 		return $instance;
@@ -185,11 +196,40 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		<p>
 		   <input id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" type="checkbox" <?php checked( $instance['comments'], 'on' ); ?>> <?php _e( 'Comments', PPTWJ_DOMAIN ); ?></input>
 		</p>
+
+		<p>
+			<strong><?php _e( 'Default Date Range', PPTWJ_DOMAIN ); ?></strong><br />
+			<small>Select the default range that would be shown for each relevant tabs on page load</small>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('popular_range'); ?>">Popular Posts Date Range</label>
+			<?php $popular_range = $instance['popular_range']; ?>
+			<select id="<?php echo $this->get_field_id( 'popular_range' ); ?>" name="<?php echo $this->get_field_name( 'popular_range' ); ?>" class="widefat">
+				<option value="all" <?php selected( $popular_range, 'all' ); ?>><?php _e('All', PPTWJ_DOMAIN); ?></option>
+				<option value="monthly" <?php selected( $popular_range, 'monthly' ); ?>><?php _e('Monthly', PPTWJ_DOMAIN); ?></option>
+				<option value="weekly" <?php selected( $popular_range, 'weekly' ); ?>><?php _e('Weekly', PPTWJ_DOMAIN); ?></option>
+				<option value="daily" <?php selected( $popular_range, 'daily' ); ?>><?php _e('Daily', PPTWJ_DOMAIN); ?></option>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('comments_range'); ?>">Commented Posts Date Range</label>
+			<?php $comments_range = $instance['comments_range']; ?>
+			<select id="<?php echo $this->get_field_id( 'comments_range' ); ?>" name="<?php echo $this->get_field_name( 'comments_range' ); ?>" class="widefat">
+				<option value="all" <?php selected( $comments_range, 'all' ); ?>><?php _e('All', PPTWJ_DOMAIN); ?></option>
+				<option value="monthly" <?php selected( $comments_range, 'monthly' ); ?>><?php _e('Monthly', PPTWJ_DOMAIN); ?></option>
+				<option value="weekly" <?php selected( $comments_range, 'weekly' ); ?>><?php _e('Weekly', PPTWJ_DOMAIN); ?></option>
+				<option value="daily" <?php selected( $comments_range, 'daily' ); ?>><?php _e('Daily', PPTWJ_DOMAIN); ?></option>
+			</select>
+		</p>
 	<?php
 	} // End form()
 
 
 	function widget($args, $instance) {
+
+		$instance = wp_parse_args( (array) $instance, $this->defaults );
 
 		extract( $args );
 	
@@ -200,6 +240,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$pop = ''; if ( array_key_exists( 'pop', $instance ) ) $pop = $instance['pop'];
 		$latest = ''; if ( array_key_exists( 'latest', $instance ) ) $latest = $instance['latest'];
 		$comments = ''; if ( array_key_exists( 'comments', $instance ) ) $comments = $instance['comments'];
+		$popular_range = $instance['popular_range'];
+		$comments_range = $instance['comments_range'];
 
 		$data = array(
 			'time' => '',
@@ -243,7 +285,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 							</li>
 						</ul>
 						<ul class="list">
-							<?php echo self::showMostCommented( $number, $thumb_size, 'all' ); ?>
+							<?php echo self::showMostCommented( $number, $thumb_size, $comments_range ); ?>
 						</ul>
 					</div><!-- #tab-comm -->
 					<?php } ?>
@@ -259,7 +301,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 							</li>
 						</ul>
 						<ul class="list">
-							<?php echo self::showMostViewed( $number, $thumb_size, 'all' ); ?>
+							<?php echo self::showMostViewed( $number, $thumb_size, $popular_range ); ?>
 						</ul>
 					</div><!-- #tab-pop -->
 					<?php } ?>
@@ -281,7 +323,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 							</li>
 						</ul>
 						<ul class="list">
-							<?php echo self::showMostCommented( $number, $thumb_size, 'all' ); ?>
+							<?php echo self::showMostCommented( $number, $thumb_size, $comments_range ); ?>
 						</ul>
 					</div><!-- #tab-comm -->
 					<?php } ?>
