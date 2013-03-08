@@ -22,6 +22,11 @@ define( 'PPTWJ_ASSETS_URL', trailingslashit( PPTWJ_URL ) . 'assets/' );
 define( 'PPTWJ_DOMAIN', 'pptwj' );
 
 /**
+ * Load admin file
+ */
+include PPTWJ_DIR . '/admin.php';
+
+/**
  * Register the widget for use in Appearance -> Widgets
  */
 add_action( 'widgets_init', 'pptwj_init' );
