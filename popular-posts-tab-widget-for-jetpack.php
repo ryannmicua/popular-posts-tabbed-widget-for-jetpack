@@ -6,6 +6,7 @@
  * Author: Ryann Micua
  * Author URI: http://pogidude.com/about
  * Version: 1.1
+ * Stable Tag: 1.1
  * License: GPL2+
  * Text Domain: pptwj
  * Domain Path: /languages/
