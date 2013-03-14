@@ -164,7 +164,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$title = isset( $instance['title'] ) ?esc_attr($instance['title']) : '';
 	?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', $textdomain); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', PPTWJ_DOMAIN); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name('title'); ?>"  value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" />
 		</p>
 		<p>
