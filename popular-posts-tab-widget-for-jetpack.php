@@ -572,6 +572,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$posts = array();
 		$counter = 0;
 		foreach( $top_posts as $top_post ){
+
+			//should only trigger for homepage
+			if(empty($top_post['post_id']))
+				continue;
 			
 			$post = get_post( $top_post['post_id'] );
 
