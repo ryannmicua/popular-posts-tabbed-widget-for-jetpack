@@ -246,7 +246,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		extract( $args );
 	
 		$number = isset( $instance['number'] ) ? $instance['number'] : 5;
-		$thumb_size = empty( $instance['thumb_size'] ) ? 45 : intval( $instance['thumb_size'] );
+		$thumb_size = intval( $instance['thumb_size'] );
 		$order = isset( $instance['order'] ) ? $instance['order'] : 'pop';
 		//$days = isset( $instance['days'] ) ? $instance['days'] : '';
 		$pop = ''; if ( array_key_exists( 'pop', $instance ) ) $pop = $instance['pop'];
@@ -859,7 +859,6 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		if( $data['action'] != 'pptwj_tabwidget_list' ) return;
 		
 		$thumb = intval( $data['thumb'] );
-		$thumb = !empty( $thumb ) ? $thumb : 45;
 		$numberposts = intval( $data['numberposts'] );
 		
 		switch( $data['time'] ){
