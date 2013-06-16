@@ -366,6 +366,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		ob_start();
 		$count = 1;
+		$date_format = get_option('date_format');
 		foreach($latest as $post) :
 			setup_postdata($post);
 			if( $count++ % 2 ){ 
@@ -391,7 +392,9 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				<?php endif; ?>
 				
 				<a class="item-title" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				<span class="meta"><?php the_time( get_option( 'date_format' ) ); ?></span>
+
+				<?php echo self::item_meta(get_the_time($date_format, $post)); ?>
+
 				<div class="fix"></div>
 			</li>
 		<?php endforeach;
@@ -451,7 +454,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>"/></a>
 			<?php endif; ?>
 			<a class="item-title" title="<?php echo $p['title']; ?>" href="<?php echo $p['permalink']; ?>"><?php echo $p['title']; ?></a>
-			<span class="meta"><?php echo $p['postdate']; ?></span>
+			<?php echo self::item_meta($p['postdate']); ?>
 			<div class="fix"></div>
 		</li>
 		<?php endforeach;
@@ -512,7 +515,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>"/></a>
 			<?php endif; ?>
 			<a class="item-title" title="<?php echo $p['title']; ?>" href="<?php echo $p['permalink']; ?>"><?php echo $p['title']; ?></a>
-			<span class="meta"><?php echo $p['postdate']; ?></span>
+			<?php echo self::item_meta($p['postdate']); ?>
 			<div class="fix"></div>
 		</li>
 		<?php endforeach;
@@ -850,6 +853,15 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		return $posts;
 	}
 	
+	/**
+	 * Display the meta data for each list item
+	 * @param  string $date
+	 * @return string html
+	 */
+	static function item_meta($date = ''){
+		return '<span class="meta">'. $date . '</span>';
+	}
+
 	static function now(){
 		return current_time('mysql');
 	}
