@@ -411,7 +411,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				
 				<a class="item-title" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 
-				<?php echo self::item_meta(get_the_time($date_format, $post), 3); ?>
+				<?php echo self::item_meta(get_the_time($date_format, $post)); ?>
 
 				<div class="fix"></div>
 			</li>
