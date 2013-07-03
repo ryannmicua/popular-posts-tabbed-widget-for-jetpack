@@ -185,9 +185,9 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		   </label>
 		</p>
 
-		<p>
+		<!--p>
 			<label><input id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" type="checkbox" <?php checked( $instance['show_date'], 'on' ); ?>> <?php _e( 'Display Publish Date', PPTWJ_DOMAIN ); ?></label>
-		</p>
+		</p-->
 
 		<p>
 			<label><input id="<?php echo $this->get_field_id( 'show_views' ); ?>" name="<?php echo $this->get_field_name( 'show_views' ); ?>" type="checkbox" <?php checked( $instance['show_views'], 'on' ); ?>> <?php _e( 'Display Page Views', PPTWJ_DOMAIN ); ?></label>
