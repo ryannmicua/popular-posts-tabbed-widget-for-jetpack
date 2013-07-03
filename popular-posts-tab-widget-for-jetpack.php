@@ -405,8 +405,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 					$postImage = pptwj_get_the_image($imageArgs); 
 				}
 				?>
-				<?php if( !empty( $postImage['src'] ) ): ?>
-				<a class="post-thumb" href="<?php the_permalink(); ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>"/></a>
+				<?php if( !empty( $postImage['src'] ) ): 
+					$css = "width: {$size}px; height: {$height}px;";
+				?>
+				<a class="post-thumb" href="<?php the_permalink(); ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>" style="<?php echo $css; ?>"/></a>
 				<?php endif; ?>
 				
 				<a class="item-title" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -468,8 +470,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				$postImage = pptwj_get_the_image($imageArgs, $p['id']); 
 			}
 			?>
-			<?php if( !empty( $postImage['src'] ) ): ?>
-				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>"/></a>
+			<?php if( !empty( $postImage['src'] ) ): 
+				$css = "width: {$size}px; height: {$size}px;";
+			?>
+				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>" style="<?php echo $css; ?>"/></a>
 			<?php endif; ?>
 			<a class="item-title" title="<?php echo $p['title']; ?>" href="<?php echo $p['permalink']; ?>"><?php echo $p['title']; ?></a>
 			<?php echo self::item_meta($p['postdate']); ?>
@@ -529,8 +533,10 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				$postImage = pptwj_get_the_image($imageArgs, $p['id']); 
 			}
 			?>
-			<?php if( !empty( $postImage['src'] ) ): ?>
-				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>"/></a>
+			<?php if( !empty( $postImage['src'] ) ): 
+				$css = "width: {$size}px; height: {$size}px;";
+			?>
+				<a class="post-thumb" href="<?php echo $p['permalink']; ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>" style="<?php echo $css; ?>"/></a>
 			<?php endif; ?>
 			<a class="item-title" title="<?php echo $p['title']; ?>" href="<?php echo $p['permalink']; ?>"><?php echo $p['title']; ?></a>
 			<?php echo self::item_meta($p['postdate'], $p['views']); ?>
