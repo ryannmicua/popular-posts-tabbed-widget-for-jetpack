@@ -406,7 +406,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 				}
 				?>
 				<?php if( !empty( $postImage['src'] ) ): 
-					$css = "width: {$size}px; height: {$height}px;";
+					$css = "width: {$size}px; height: {$size}px;";
 				?>
 				<a class="post-thumb" href="<?php the_permalink(); ?>"><img src="<?php echo $postImage['src']; ?>" alt="<?php echo $postImage['alt']; ?>" width="<?php echo $postImage['width']; ?>" height="<?php echo $postImage['height']; ?>" style="<?php echo $css; ?>"/></a>
 				<?php endif; ?>
