@@ -3,8 +3,8 @@ Contributors: pogidude
 Donate link: http://pogidude.com/donate/
 Tags: popular posts, tab widget, tabs, jetpack stats, jetpack popular posts
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable Tag: 1.2
+Tested up to: 3.6
+Stable Tag: 1.3
 License: GPL2+
 
 Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.
@@ -35,6 +35,11 @@ First, you need to have the Jetpack plugin installed and connected to a WordPres
 2. Screenshot of the widget settings in the backend.
 
 == Changelog ==
+
+= 1.3 =
+* add width and height inline styles to thumbnail image
+* update daily value from 1 to 2 when querying jetpack stats server
+* made plugin l18n friendly
 
 = 1.2 =
 * improve output of thumbnail images
