@@ -232,11 +232,11 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 
 		<p>
 			<strong><?php _e( 'Default Date Range', 'pptwj' ); ?></strong><br />
-			<small>Select the default range that would be shown for each relevant tabs on page load</small>
+			<small><?php _e('Select the default range that would be shown for each relevant tabs on page load', 'pptwj'); ?></small>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('popular_range'); ?>">Popular Posts Date Range</label>
+			<label for="<?php echo $this->get_field_id('popular_range'); ?>"><?php _e('Popular Posts Date Range', 'pptwj'); ?></label>
 			<?php $popular_range = $instance['popular_range']; ?>
 			<select id="<?php echo $this->get_field_id( 'popular_range' ); ?>" name="<?php echo $this->get_field_name( 'popular_range' ); ?>" class="widefat">
 				<option value="all" <?php selected( $popular_range, 'all' ); ?>><?php _e('All', 'pptwj'); ?></option>
@@ -247,7 +247,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('comments_range'); ?>">Commented Posts Date Range</label>
+			<label for="<?php echo $this->get_field_id('comments_range'); ?>"><?php _e('Commented Posts Date Range', 'pptwj'); ?></label>
 			<?php $comments_range = $instance['comments_range']; ?>
 			<select id="<?php echo $this->get_field_id( 'comments_range' ); ?>" name="<?php echo $this->get_field_name( 'comments_range' ); ?>" class="widefat">
 				<option value="all" <?php selected( $comments_range, 'all' ); ?>><?php _e('All', 'pptwj'); ?></option>
@@ -277,6 +277,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$comments = ''; if ( array_key_exists( 'comments', $instance ) ) $comments = $instance['comments'];
 		$popular_range = $instance['popular_range'];
 		$comments_range = $instance['comments_range'];
+
+		$filter_links = array('day' => __('Today', 'pptwj'),'week' => __('Week','pptwj'),'month' => __('Month','pptwj'), 'all' => __('All','pptwj') );
 
 		$data = array(
 			'time' => '',
@@ -323,7 +325,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -339,7 +341,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="popular">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="popular"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -361,7 +363,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
