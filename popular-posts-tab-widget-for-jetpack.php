@@ -28,6 +28,11 @@ define( 'PPTWJ_DOMAIN', 'pptwj' );
 include PPTWJ_DIR . '/admin.php';
 
 /**
+ * Load languages
+ */
+include PPTWJ_DIR . '/load-lang.php';
+
+/**
  * Register the widget for use in Appearance -> Widgets
  */
 add_action( 'widgets_init', 'pptwj_init' );
