@@ -5,14 +5,14 @@
  * Description: Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.
  * Author: Ryann Micua
  * Author URI: http://pogidude.com/about
- * Version: 1.2
- * Stable Tag: 1.2
+ * Version: 1.3
+ * Stable Tag: 1.3
  * License: GPL2+
  * Text Domain: pptwj
  * Domain Path: /languages/
  */
 
-define( 'PPTWJ_VERSION', '1.2');
+define( 'PPTWJ_VERSION', '1.3');
 //e.g. /var/www/example.com/wordpress/wp-content/plugins/plugin-slug
 define( "PPTWJ_DIR", plugin_dir_path( __FILE__ ) );
 //e.g. http://example.com/wordpress/wp-content/plugins/plugin-slug
@@ -26,6 +26,11 @@ define( 'PPTWJ_DOMAIN', 'pptwj' );
  * Load admin file
  */
 include PPTWJ_DIR . '/admin.php';
+
+/**
+ * Load languages
+ */
+include PPTWJ_DIR . '/load-lang.php';
 
 /**
  * Register the widget for use in Appearance -> Widgets
@@ -83,7 +88,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		);
 
 		/* Widget settings. */
-		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', PPTWJ_DOMAIN) );
+		$widget_ops = array( 'classname' => 'pptwj', 'description' => __( 'This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments.', 'pptwj') );
 
 		/* Widget control settings. */
 		$control_ops = array( 
@@ -93,7 +98,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		);
 
 		/* Create the widget. */
-		parent::__construct( 'pptwj', __('Popular Posts Tabbed Widget', PPTWJ_DOMAIN ), $widget_ops, $control_ops );
+		parent::__construct( 'pptwj', __('Popular Posts Tabbed Widget', 'pptwj' ), $widget_ops, $control_ops );
 
 		/* Load scripts and css */
 		if ( is_active_widget( false, false, $this->id_base ) ) {
@@ -171,84 +176,84 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$title = isset( $instance['title'] ) ?esc_attr($instance['title']) : '';
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', PPTWJ_DOMAIN); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'pptwj'); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name('title'); ?>"  value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" />
 		</p>
 		<p>
-		   <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts:', PPTWJ_DOMAIN ); ?>
+		   <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts:', 'pptwj' ); ?>
 		   <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo isset( $instance['number'] ) ? $instance['number'] : ''; ?>" />
 		   </label>
 		</p>
 		<p>
-		   <label for="<?php echo $this->get_field_id( 'thumb_size' ); ?>"><?php _e( 'Thumbnail Size (0=disable):', PPTWJ_DOMAIN ); ?>
+		   <label for="<?php echo $this->get_field_id( 'thumb_size' ); ?>"><?php _e( 'Thumbnail Size (0=disable):', 'pptwj' ); ?>
 		   <input class="widefat" id="<?php echo $this->get_field_id( 'thumb_size' ); ?>" name="<?php echo $this->get_field_name( 'thumb_size' ); ?>" type="text" value="<?php echo isset( $instance['thumb_size'] ) ? $instance['thumb_size'] : ''; ?>" />
 		   </label>
 		</p>
 
 		<!--p>
-			<label><input id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" type="checkbox" <?php checked( $instance['show_date'], 'on' ); ?>> <?php _e( 'Display Publish Date', PPTWJ_DOMAIN ); ?></label>
+			<label><input id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" type="checkbox" <?php checked( $instance['show_date'], 'on' ); ?>> <?php _e( 'Display Publish Date', 'pptwj' ); ?></label>
 		</p-->
 
 		<p>
-			<label><input id="<?php echo $this->get_field_id( 'show_views' ); ?>" name="<?php echo $this->get_field_name( 'show_views' ); ?>" type="checkbox" <?php checked( $instance['show_views'], 'on' ); ?>> <?php _e( 'Display Page Views', PPTWJ_DOMAIN ); ?></label>
+			<label><input id="<?php echo $this->get_field_id( 'show_views' ); ?>" name="<?php echo $this->get_field_name( 'show_views' ); ?>" type="checkbox" <?php checked( $instance['show_views'], 'on' ); ?>> <?php _e( 'Display Page Views', 'pptwj' ); ?></label>
 		</p>
 
 		<?php /*
 		<p>
-		   <label for="<?php echo $this->get_field_id( 'days' ); ?>"><?php _e( 'Popular limit (days):', PPTWJ_DOMAIN ); ?>
+		   <label for="<?php echo $this->get_field_id( 'days' ); ?>"><?php _e( 'Popular limit (days):', 'pptwj' ); ?>
 		   <input class="widefat" id="<?php echo $this->get_field_id( 'days' ); ?>" name="<?php echo $this->get_field_name( 'days' ); ?>" type="text" value="<?php echo isset( $instance['days'] ) ? $instance['days'] : ''; ?>" />
 		   </label>
 		</p>
 		*/ ?>
 		<p>
 			<?php $order = isset( $instance['order'] ) ? $instance['order'] : 'pop'; ?>
-		    <label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'First Visible Tab:', PPTWJ_DOMAIN ); ?></label>
+		    <label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'First Visible Tab:', 'pptwj' ); ?></label>
 		    <select name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'order' ); ?>">
-		        <option value="pop" <?php selected( $order, 'pop' ); ?>><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></option>
-		        <option value="latest" <?php selected( $order, 'latest' ); ?>><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></option>
-		        <option value="comments" <?php selected( $order, 'comments' ); ?>><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></option>
+		        <option value="pop" <?php selected( $order, 'pop' ); ?>><?php _e( 'Popular', 'pptwj' ); ?></option>
+		        <option value="latest" <?php selected( $order, 'latest' ); ?>><?php _e( 'Latest', 'pptwj' ); ?></option>
+		        <option value="comments" <?php selected( $order, 'comments' ); ?>><?php _e( 'Comments', 'pptwj' ); ?></option>
 		    </select>
 		</p>
-		<p><strong><?php _e( 'Hide Tabs:', PPTWJ_DOMAIN ); ?></strong></p>
+		<p><strong><?php _e( 'Hide Tabs:', 'pptwj' ); ?></strong></p>
 
 		<?php if( !self::$_stats_enabled ) : ?>
-			<div class="pptwj-require-error" style="background: #FFEBE8; border: 1px solid #c00; color: #333; margin: 1em 0; padding: 3px 5px; "><?php _e('Popular Posts tab requires the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> to be activated and connected. It also requires the Jetpack Stats module to be enabled.', PPTWJ_DOMAIN ); ?></div>
+			<div class="pptwj-require-error" style="background: #FFEBE8; border: 1px solid #c00; color: #333; margin: 1em 0; padding: 3px 5px; "><?php _e('Popular Posts tab requires the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> to be activated and connected. It also requires the Jetpack Stats module to be enabled.', 'pptwj' ); ?></div>
 		<?php endif; ?>
 
 		<p>
-			<label><input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $instance['pop'], 'on' ); ?>> <?php _e( 'Popular', PPTWJ_DOMAIN ); ?></label>
+			<label><input id="<?php echo $this->get_field_id( 'pop' ); ?>" name="<?php echo $this->get_field_name( 'pop' ); ?>" type="checkbox" <?php checked( $instance['pop'], 'on' ); ?>> <?php _e( 'Popular', 'pptwj' ); ?></label>
 		</p>
 		<p>
-		   <label><input id="<?php echo $this->get_field_id( 'latest' ); ?>" name="<?php echo $this->get_field_name( 'latest' ); ?>" type="checkbox" <?php checked( $instance['latest'], 'on' ); ?>> <?php _e( 'Latest', PPTWJ_DOMAIN ); ?></label>
+		   <label><input id="<?php echo $this->get_field_id( 'latest' ); ?>" name="<?php echo $this->get_field_name( 'latest' ); ?>" type="checkbox" <?php checked( $instance['latest'], 'on' ); ?>> <?php _e( 'Latest', 'pptwj' ); ?></label>
 		</p>
 		<p>
-		   <label><input id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" type="checkbox" <?php checked( $instance['comments'], 'on' ); ?>> <?php _e( 'Comments', PPTWJ_DOMAIN ); ?></label>
-		</p>
-
-		<p>
-			<strong><?php _e( 'Default Date Range', PPTWJ_DOMAIN ); ?></strong><br />
-			<small>Select the default range that would be shown for each relevant tabs on page load</small>
+		   <label><input id="<?php echo $this->get_field_id( 'comments' ); ?>" name="<?php echo $this->get_field_name( 'comments' ); ?>" type="checkbox" <?php checked( $instance['comments'], 'on' ); ?>> <?php _e( 'Comments', 'pptwj' ); ?></label>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('popular_range'); ?>">Popular Posts Date Range</label>
+			<strong><?php _e( 'Default Date Range', 'pptwj' ); ?></strong><br />
+			<small><?php _e('Select the default range that would be shown for each relevant tabs on page load', 'pptwj'); ?></small>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('popular_range'); ?>"><?php _e('Popular Posts Date Range', 'pptwj'); ?></label>
 			<?php $popular_range = $instance['popular_range']; ?>
 			<select id="<?php echo $this->get_field_id( 'popular_range' ); ?>" name="<?php echo $this->get_field_name( 'popular_range' ); ?>" class="widefat">
-				<option value="all" <?php selected( $popular_range, 'all' ); ?>><?php _e('All', PPTWJ_DOMAIN); ?></option>
-				<option value="monthly" <?php selected( $popular_range, 'monthly' ); ?>><?php _e('Monthly', PPTWJ_DOMAIN); ?></option>
-				<option value="weekly" <?php selected( $popular_range, 'weekly' ); ?>><?php _e('Weekly', PPTWJ_DOMAIN); ?></option>
-				<option value="daily" <?php selected( $popular_range, 'daily' ); ?>><?php _e('Daily', PPTWJ_DOMAIN); ?></option>
+				<option value="all" <?php selected( $popular_range, 'all' ); ?>><?php _e('All', 'pptwj'); ?></option>
+				<option value="monthly" <?php selected( $popular_range, 'monthly' ); ?>><?php _e('Monthly', 'pptwj'); ?></option>
+				<option value="weekly" <?php selected( $popular_range, 'weekly' ); ?>><?php _e('Weekly', 'pptwj'); ?></option>
+				<option value="daily" <?php selected( $popular_range, 'daily' ); ?>><?php _e('Daily', 'pptwj'); ?></option>
 			</select>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('comments_range'); ?>">Commented Posts Date Range</label>
+			<label for="<?php echo $this->get_field_id('comments_range'); ?>"><?php _e('Commented Posts Date Range', 'pptwj'); ?></label>
 			<?php $comments_range = $instance['comments_range']; ?>
 			<select id="<?php echo $this->get_field_id( 'comments_range' ); ?>" name="<?php echo $this->get_field_name( 'comments_range' ); ?>" class="widefat">
-				<option value="all" <?php selected( $comments_range, 'all' ); ?>><?php _e('All', PPTWJ_DOMAIN); ?></option>
-				<option value="monthly" <?php selected( $comments_range, 'monthly' ); ?>><?php _e('Monthly', PPTWJ_DOMAIN); ?></option>
-				<option value="weekly" <?php selected( $comments_range, 'weekly' ); ?>><?php _e('Weekly', PPTWJ_DOMAIN); ?></option>
-				<option value="daily" <?php selected( $comments_range, 'daily' ); ?>><?php _e('Daily', PPTWJ_DOMAIN); ?></option>
+				<option value="all" <?php selected( $comments_range, 'all' ); ?>><?php _e('All', 'pptwj'); ?></option>
+				<option value="monthly" <?php selected( $comments_range, 'monthly' ); ?>><?php _e('Monthly', 'pptwj'); ?></option>
+				<option value="weekly" <?php selected( $comments_range, 'weekly' ); ?>><?php _e('Weekly', 'pptwj'); ?></option>
+				<option value="daily" <?php selected( $comments_range, 'daily' ); ?>><?php _e('Daily', 'pptwj'); ?></option>
 			</select>
 		</p>
 		<?php
@@ -273,6 +278,8 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		$popular_range = $instance['popular_range'];
 		$comments_range = $instance['comments_range'];
 
+		$filter_links = array('day' => __('Today', 'pptwj'),'week' => __('Week','pptwj'),'month' => __('Month','pptwj'), 'all' => __('All','pptwj') );
+
 		$data = array(
 			'time' => '',
 			'tab' => '',
@@ -294,13 +301,13 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 			<div class="pptwj-tabs-wrap">
 	
 				<ul class="tab-links">
-					<?php if ( $order == "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></a></li>
-					<?php } elseif ( $order == "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></a></li>
+					<?php if ( $order == "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', 'pptwj' ); ?></a></li>
+					<?php } elseif ( $order == "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', 'pptwj' ); ?></a></li>
 					<?php } ?>
 					
-					<?php if (!$pop == "on") { ?><li class="popular"><a href="#tab-pop"><?php _e( 'Popular', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
-					<?php if ($order <> "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
-					<?php if ($order <> "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', PPTWJ_DOMAIN ); ?></a></li><?php } ?>
+					<?php if (!$pop == "on") { ?><li class="popular"><a href="#tab-pop"><?php _e( 'Popular', 'pptwj' ); ?></a></li><?php } ?>
+					<?php if ($order <> "comments" && !$comments == "on") { ?><li class="comments"><a href="#tab-comm"><?php _e( 'Comments', 'pptwj' ); ?></a></li><?php } ?>
+					<?php if ($order <> "latest" && !$latest == "on") { ?><li class="latest"><a href="#tab-latest"><?php _e( 'Latest', 'pptwj' ); ?></a></li><?php } ?>
 				</ul>
 				
 				<div class="clear"></div>
@@ -318,7 +325,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -334,7 +341,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="popular">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="popular"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -356,7 +363,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 						<ul class="tab-filter-list" data-type="comments">
 							<li>
 								<?php 
-								foreach( array('day' => 'Today','week' => 'Week','month' => 'Month', 'all' => 'All' ) as $key => $val ): ?>
+								foreach( $filter_links as $key => $val ): ?>
 									<a href="#" data-time="<?php echo $key; ?>" data-numberposts="<?php echo $number; ?>" data-thumb="<?php echo $thumb_size; ?>" data-tab="commented"><?php echo $val; ?></a>
 								<?php endforeach; ?>
 							</li>
@@ -442,7 +449,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		
 		if( !$popular ):
 			?>
-			<li><?php _e('Sorry. No data yet.', PPTWJ_DOMAIN ); ?></li>
+			<li><?php _e('Sorry. No data yet.', 'pptwj' ); ?></li>
 			<?php
 			$contents = ob_get_contents();
 			ob_end_clean();
@@ -503,7 +510,7 @@ class Popular_Posts_Tabbed_Widget_Jetpack extends WP_Widget {
 		ob_start();
 
 		if( !$popular ):
-			$message = !self::$_stats_enabled ? __('<a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> with Stats module needs to be enabled.', PPTWJ_DOMAIN) : __('Sorry. No data yet.', PPTWJ_DOMAIN);
+			$message = !self::$_stats_enabled ? __('<a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> with Stats module needs to be enabled.', 'pptwj') : __('Sorry. No data yet.', 'pptwj');
 			?>
 			<li><?php echo $message; ?></li>
 			<?php
