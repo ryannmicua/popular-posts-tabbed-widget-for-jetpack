@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Popular Posts Tabbed Widget for JetPack\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-15 21:05+0800\n"
+"PO-Revision-Date: 2015-05-15 21:09+0800\n"
+"Last-Translator: Pogidude <ryann@pogidude.com>\n"
+"Language-Team: Pogidude <ryann@pogidude.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: popular-posts-tab-widget-for-jetpack.php:91
+msgid "This widget is the Tabs that classically goes into the sidebar. It contains the Popular posts, Latest Posts and Recent comments."
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:101
+msgid "Popular Posts Tabbed Widget"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:179
+msgid "Title:"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:183
+msgid "Number of posts:"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:188
+msgid "Thumbnail Size (0=disable):"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:194
+msgid "Display Publish Date"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:198
+msgid "Display Page Views"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:210
+msgid "First Visible Tab:"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:212
+#: popular-posts-tab-widget-for-jetpack.php:225
+#: popular-posts-tab-widget-for-jetpack.php:309
+msgid "Popular"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:213
+#: popular-posts-tab-widget-for-jetpack.php:228
+#: popular-posts-tab-widget-for-jetpack.php:305
+#: popular-posts-tab-widget-for-jetpack.php:311
+msgid "Latest"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:214
+#: popular-posts-tab-widget-for-jetpack.php:231
+#: popular-posts-tab-widget-for-jetpack.php:306
+#: popular-posts-tab-widget-for-jetpack.php:310
+msgid "Comments"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:217
+msgid "Hide Tabs:"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:220
+#, php-format
+msgid ""
+"This plugin requires the <a href=\"%s\" target=\"_blank\">Jetpack plugin</a> to be activated and connected. This also\n"
+"requires the Jetpack Stats module to be enabled."
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:235
+msgid "Default Date Range"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:236
+msgid "Select the default range that would be shown for each relevant tabs on page load"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:240
+msgid "Popular Posts Date Range"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:243
+#: popular-posts-tab-widget-for-jetpack.php:254
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "All"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:244
+#: popular-posts-tab-widget-for-jetpack.php:255
+msgid "Monthly"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:245
+#: popular-posts-tab-widget-for-jetpack.php:256
+msgid "Weekly"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:246
+#: popular-posts-tab-widget-for-jetpack.php:257
+msgid "Daily"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:251
+msgid "Commented Posts Date Range"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Today"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Week"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Month"
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:453
+#: popular-posts-tab-widget-for-jetpack.php:514
+msgid "Sorry. No data yet."
+msgstr ""
+
+#: popular-posts-tab-widget-for-jetpack.php:514
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Jetpack plugin</a> with Stats module needs to be enabled."
+msgstr ""
+
+#: admin.php:18
+#, php-format
+msgid "Installation of Popular Posts Tabbed Widget for Jetpack plugin successful! Go to the <a href=\"%1$s\">Widgets page</a> to use your new Popular Posts Tabbed Widget. <a href=\"%2$s\">Hide notice</a>"
+msgstr ""
+
