@@ -12,7 +12,7 @@
  * Domain Path: /languages/
  */
 
-define( 'PPTWJ_VERSION', '1.3');
+define( 'PPTWJ_VERSION', '1.4');
 //e.g. /var/www/example.com/wordpress/wp-content/plugins/plugin-slug
 define( "PPTWJ_DIR", plugin_dir_path( __FILE__ ) );
 //e.g. http://example.com/wordpress/wp-content/plugins/plugin-slug

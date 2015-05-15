@@ -15,7 +15,7 @@ function pptwj_plugin_notice(){
 
 		echo '<div class="updated"><p>';
 
-		printf( __('Installation of Popular Posts Tabbed Widget for Jetpack plugin successful! Go to the <a href="%1$s">Widgets page</a> to use your new Popular Posts Tabbed Widget. <a href="%2$s">Hide notice</a>', PPTWJ_DOMAIN ), admin_url('widgets.php'), add_query_arg( array('pptwj-action' => 'hide-install-notice' ) ) );
+		printf( __('Installation of Popular Posts Tabbed Widget for Jetpack plugin successful! Go to the <a href="%1$s">Widgets page</a> to use your new Popular Posts Tabbed Widget. <a href="%2$s">Hide notice</a>', 'pptwj' ), admin_url('widgets.php'), add_query_arg( array('pptwj-action' => 'hide-install-notice' ) ) );
 
 		echo '</p></div>';
 	}
