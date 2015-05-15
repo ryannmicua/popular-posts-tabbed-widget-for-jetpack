@@ -5,8 +5,8 @@
  * Description: Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.
  * Author: Ryann Micua
  * Author URI: http://pogidude.com/about
- * Version: 1.3
- * Stable Tag: 1.3
+ * Version: 1.4
+ * Stable Tag: 1.4
  * License: GPL2+
  * Text Domain: pptwj
  * Domain Path: /languages/
