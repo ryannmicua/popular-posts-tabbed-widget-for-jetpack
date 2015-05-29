@@ -16,6 +16,9 @@ Shows a tabbed widget for most popular, most commented and latest blog posts. *M
 = Translating =
 Interested in translating this plugin to your language? Grab the [development version](http://downloads.wordpress.org/plugin/popular-posts-tab-widget-for-jetpack.zip) where you will find an up to date pptwj.pot. Send any translation files to ryann @ pogidude.com and thank you!
 
+= Available translations =
+*Hebrew* - Eliran Mukdasi
+
 = Contribute =
 A [GIT repository](https://github.com/ryannmicua/popular-posts-tabbed-widget-for-jetpack) is available if you'd like to submit a patch.
 
