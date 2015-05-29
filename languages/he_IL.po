@@ -1,0 +1,164 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Popular Posts Tabbed Widget for JetPack\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-28 10:51+0200\n"
+"PO-Revision-Date: 2015-05-28 10:58+0200\n"
+"Last-Translator: Pogidude <ryann@pogidude.com>\n"
+"Language-Team: Pogidude <ryann@pogidude.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.8.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: he_IL\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: popular-posts-tab-widget-for-jetpack.php:91
+msgid ""
+"This widget is the Tabs that classically goes into the sidebar. It contains "
+"the Popular posts, Latest Posts and Recent comments."
+msgstr ""
+"הוידג'ט הזה הוא של טאבים שיופיעו בסיידבר. הוא מכיל פוסטים פופולריים, פוסטים "
+"אחרונים ותגובות אחרונות."
+
+#: popular-posts-tab-widget-for-jetpack.php:101
+msgid "Popular Posts Tabbed Widget"
+msgstr "וידג'ט עם טאבים של פוסטים פופולריים."
+
+#: popular-posts-tab-widget-for-jetpack.php:179
+msgid "Title:"
+msgstr "כותבת:"
+
+#: popular-posts-tab-widget-for-jetpack.php:183
+msgid "Number of posts:"
+msgstr "מספר פוסטים:"
+
+#: popular-posts-tab-widget-for-jetpack.php:188
+msgid "Thumbnail Size (0=disable):"
+msgstr "גודל תמונה ממוזערת (0 = בטל):"
+
+#: popular-posts-tab-widget-for-jetpack.php:194
+msgid "Display Publish Date"
+msgstr "תצוגת תאריך הפרסום"
+
+#: popular-posts-tab-widget-for-jetpack.php:198
+msgid "Display Page Views"
+msgstr "תצוגות דף"
+
+#: popular-posts-tab-widget-for-jetpack.php:210
+msgid "First Visible Tab:"
+msgstr "הטאב הראשון גלוי:"
+
+#: popular-posts-tab-widget-for-jetpack.php:212
+#: popular-posts-tab-widget-for-jetpack.php:225
+#: popular-posts-tab-widget-for-jetpack.php:309
+msgid "Popular"
+msgstr "פופולרי"
+
+#: popular-posts-tab-widget-for-jetpack.php:213
+#: popular-posts-tab-widget-for-jetpack.php:228
+#: popular-posts-tab-widget-for-jetpack.php:305
+#: popular-posts-tab-widget-for-jetpack.php:311
+msgid "Latest"
+msgstr "אחרונים"
+
+#: popular-posts-tab-widget-for-jetpack.php:214
+#: popular-posts-tab-widget-for-jetpack.php:231
+#: popular-posts-tab-widget-for-jetpack.php:306
+#: popular-posts-tab-widget-for-jetpack.php:310
+msgid "Comments"
+msgstr "תגובות"
+
+#: popular-posts-tab-widget-for-jetpack.php:217
+msgid "Hide Tabs:"
+msgstr "הסבר טאבים:"
+
+#: popular-posts-tab-widget-for-jetpack.php:220
+#, php-format
+msgid ""
+"This plugin requires the <a href=\"%s\" target=\"_blank\">Jetpack plugin</a> "
+"to be activated and connected. This also\n"
+"requires the Jetpack Stats module to be enabled."
+msgstr ""
+"הפלאגין הזה צורך את <a href=\"%s\" target=\"_blank\">Jetpack plugin</a> בכדי "
+"לפעול ולהיות מחובר. כמו כן הוא צורך את ה-Jatpack Stats מודול בכדי לפעול "
+"כהלכה."
+
+#: popular-posts-tab-widget-for-jetpack.php:235
+msgid "Default Date Range"
+msgstr "טווח תאריך ברירת מחדל"
+
+#: popular-posts-tab-widget-for-jetpack.php:236
+msgid ""
+"Select the default range that would be shown for each relevant tabs on page "
+"load"
+msgstr "בחר את טווח ברירת המחדל שיראה לכל טאב רלוונטי בזמן הטעינה."
+
+#: popular-posts-tab-widget-for-jetpack.php:240
+msgid "Popular Posts Date Range"
+msgstr "טווח תאריכים של פוסטים פופולריים"
+
+#: popular-posts-tab-widget-for-jetpack.php:243
+#: popular-posts-tab-widget-for-jetpack.php:254
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "All"
+msgstr "הכל"
+
+#: popular-posts-tab-widget-for-jetpack.php:244
+#: popular-posts-tab-widget-for-jetpack.php:255
+msgid "Monthly"
+msgstr "חודשי"
+
+#: popular-posts-tab-widget-for-jetpack.php:245
+#: popular-posts-tab-widget-for-jetpack.php:256
+msgid "Weekly"
+msgstr "שבועי"
+
+#: popular-posts-tab-widget-for-jetpack.php:246
+#: popular-posts-tab-widget-for-jetpack.php:257
+msgid "Daily"
+msgstr "יומי"
+
+#: popular-posts-tab-widget-for-jetpack.php:251
+msgid "Commented Posts Date Range"
+msgstr "טווח תאריכים של פוסטים עם תגובות"
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Today"
+msgstr "היום"
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Week"
+msgstr "שבוע"
+
+#: popular-posts-tab-widget-for-jetpack.php:282
+msgid "Month"
+msgstr "חודש"
+
+#: popular-posts-tab-widget-for-jetpack.php:453
+#: popular-posts-tab-widget-for-jetpack.php:514
+msgid "Sorry. No data yet."
+msgstr "מצטערים. אין עדיין מידע."
+
+#: popular-posts-tab-widget-for-jetpack.php:514
+#, php-format
+msgid ""
+"<a href=\"%s\" target=\"_blank\">Jetpack plugin</a> with Stats module needs "
+"to be enabled."
+msgstr ""
+"<a href=\"%s\" target=\"_blank\">Jetpack plugin</a> עם מודול Stats צריך "
+"להיות מופעל."
+
+#: admin.php:18
+#, php-format
+msgid ""
+"Installation of Popular Posts Tabbed Widget for Jetpack plugin successful! "
+"Go to the <a href=\"%1$s\">Widgets page</a> to use your new Popular Posts "
+"Tabbed Widget. <a href=\"%2$s\">Hide notice</a>"
+msgstr ""
+"התקנת התוסף Popular Posts Tabbed Widget ל-Jatpack plugin בוצעה בהצלחה! גש/י "
+"ל-<a href=\"%1$s\">עמוד הוידג'טים</a> בכדי להשתמש בוידג'ט Popular Posts "
+"Tabbed . <a href=\"%2$s\">הסתר הודעה</a>"
