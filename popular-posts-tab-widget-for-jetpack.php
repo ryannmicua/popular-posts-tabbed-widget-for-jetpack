@@ -30,7 +30,11 @@ include PPTWJ_DIR . '/admin.php';
 /**
  * Load languages
  */
-include PPTWJ_DIR . '/load-lang.php';
+function pptwj_loadlang() {
+	load_plugin_textdomain( 'pptwj', false, dirname( plugin_basename(__FILE__) ) . '/languages' ); 
+}
+add_action('plugins_loaded', 'pptwj_loadlang');
+
 
 /**
  * Register the widget for use in Appearance -> Widgets
