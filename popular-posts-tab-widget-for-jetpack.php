@@ -430,6 +430,7 @@ requires the Jetpack Stats module to be enabled.', 'pptwj' ), 'http://wordpress.
 				<div class="fix"></div>
 			</li>
 		<?php endforeach;
+		wp_reset_postdata();
 		$contents = ob_get_contents();
 		ob_end_clean();
 		return $contents;
