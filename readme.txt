@@ -4,7 +4,7 @@ Donate link: http://pogidude.com/donate/
 Tags: popular posts, tab widget, tabs, jetpack stats, jetpack popular posts
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable Tag: 1.4.1
+Stable Tag: 1.4.2
 License: GPL2+
 
 Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.

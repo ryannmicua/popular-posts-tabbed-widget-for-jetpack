@@ -5,14 +5,14 @@
  * Description: Shows a tabbed widget for most popular, most commented and latest blog posts. Most popular posts tab uses data from Jetpack Stats module.
  * Author: Ryann Micua
  * Author URI: http://pogidude.com/about
- * Version: 1.4.1
- * Stable Tag: 1.4.1
+ * Version: 1.4.2
+ * Stable Tag: 1.4.2
  * License: GPL2+
  * Text Domain: pptwj
  * Domain Path: /languages/
  */
 
-define( 'PPTWJ_VERSION', '1.4.1');
+define( 'PPTWJ_VERSION', '1.4.2');
 //e.g. /var/www/example.com/wordpress/wp-content/plugins/plugin-slug
 define( "PPTWJ_DIR", plugin_dir_path( __FILE__ ) );
 //e.g. http://example.com/wordpress/wp-content/plugins/plugin-slug
@@ -430,6 +430,7 @@ requires the Jetpack Stats module to be enabled.', 'pptwj' ), 'http://wordpress.
 				<div class="fix"></div>
 			</li>
 		<?php endforeach;
+		wp_reset_postdata();
 		$contents = ob_get_contents();
 		ob_end_clean();
 		return $contents;
