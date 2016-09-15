@@ -378,7 +378,7 @@ requires the Jetpack Stats module to be enabled.', 'pptwj' ), 'http://wordpress.
 						</ul>
 					</div><!-- #tab-comm -->
 					<?php } ?>
-					<div class="pptwj-loader"><img src="<?php echo includes_url(); ?>/images/wpspin-2x.gif" alt="Ajax spinner"></div>
+					<div class="pptwj-loader"><img src="<?php echo includes_url( '/images/wpspin-2x.gif' ); ?>" alt="Ajax spinner"></div>
 				</div><!-- /.boxes -->
 			</div><!-- /pptwj-tabs-wrap -->
 
